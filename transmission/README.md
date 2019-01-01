@@ -1,9 +1,7 @@
 # sisaenkov/transmission
-Based on [linuxserver/transmission](https://github.com/linuxserver/docker-transmission)
-
-Optimized for personal needs: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11.2](http://freenas.org/) + [portainer.io](https://www.portainer.io/) templates.
-
-Also disabled creation of complete/incomplete directories, disabled /watch directory.
+* `Based on [linuxserver/transmission](https://github.com/linuxserver/docker-transmission)`
+* `Optimized for personal needs: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11.2](http://freenas.org/) + [portainer.io](https://www.portainer.io/) templates.`
+* `Also disabled creation of complete/incomplete directories, disabled /watch directory.`
 
 [Transmission](http://www.transmissionbt.com/about/) is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.
 
