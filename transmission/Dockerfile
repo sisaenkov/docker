@@ -2,7 +2,7 @@ FROM lsiobase/alpine:3.8
 
 # set version label
 ARG BUILD_DATE=20190101
-ARG VERSION=157
+ARG VERSION=2.94
 LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="s.isaenkov"
 

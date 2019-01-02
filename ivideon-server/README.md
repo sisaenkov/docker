@@ -1,5 +1,5 @@
 # Ivideon Video Server (without GUI)
-[![](https://images.microbadger.com/badges/version/sisaenkov/ivideon-server.svg)](https://microbadger.com/images/sisaenkov/ivideon-server "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/sisaenkov/ivideon-server.svg)](https://microbadger.com/images/sisaenkov/ivideon-server "Get your own image badge on microbadger.com") ![](https://img.shields.io/docker/pulls/sisaenkov/ivideon-server.svg) ![](https://img.shields.io/docker/stars/sisaenkov/ivideon-server.svg)
+[![](https://images.microbadger.com/badges/version/sisaenkov/ivideon-server.svg)](https://microbadger.com/images/sisaenkov/ivideon-server) [![](https://images.microbadger.com/badges/image/sisaenkov/ivideon-server.svg)](https://microbadger.com/images/sisaenkov/ivideon-server) ![](https://img.shields.io/docker/pulls/sisaenkov/ivideon-server.svg) ![](https://img.shields.io/docker/stars/sisaenkov/ivideon-server.svg)
 
 A cloud-based video surveillance solution for business and the home. **Ivideon** is easy to set up, maintain, and scale, no matter how many locations you have. It can easily cope with any number of cameras.
 
