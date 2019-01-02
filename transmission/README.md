@@ -39,7 +39,7 @@ $ docker run -d --name=transmission --restart=always \
 |--|--|--|
 | `PUID` | 1020 | specifies the GroupID for the container internal transmission group (used for file ownership) |
 | `PGID` | 1020 | specifies the UserID for the container internal transmission user (used for process and file ownership) |
-| `TZ` || timezone information, eg Europe/Moscow |
+| `TZ` || timezone information, e.g. Europe/Moscow |
 
 ## Setting up the application 
 
