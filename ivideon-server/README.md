@@ -56,14 +56,15 @@ The best way to create a configuration file is to setup Ivideon Server applicati
       "path" : "/archive",
       "sizeLimit" : 5120,               // in MB
       "sizeToCleanup" : 1024,           // in MB
-      "useArchive" : false,				// set true to enable. Also don't forget to set docker volume.
+      "useArchive" : false,			// set true to enable. Also don't forget to set docker volume.
       "useEventLog" : false,
       "webcamBitRate" : 2048,           // 512, 1024, 2048, 3072, 4096 (kbit/s)
       "webcamFrameRate" : 30,           // 2, 5, 10, 15, 20, 25, 30 (fps)
       "webcamResolution" : 0,           // 0 - high, 1 - medium, 2 - low
       "webcamVideoFormat" : 1           // 0 - MPEG-4, 1 - H.264
    },
-   // if you need more that one archive locations, add such array as listed below and set `useArchive` to true. Otherwise you can delete next 18 lines.
+   // if you need more that one archive locations, add such array as listed below and set `useArchive` to true.
+   // Otherwise you can delete next 18 lines.
    "archives" : [
       {
          "id" : 1,
@@ -83,7 +84,8 @@ The best way to create a configuration file is to setup Ivideon Server applicati
       }
    ],
    "cameras" : [
-      // Camera 1 - example without motion detection, sound and archiving
+      // Camera 1
+      // example without motion detection, sound and archiving
       {
          "id" : 0,
          "mdExcludedZoneList" : null,
@@ -96,7 +98,8 @@ The best way to create a configuration file is to setup Ivideon Server applicati
          "useCameraMotionDetector" : false,
          "useSound" : false
       },
-      // Camera 2 - example with continius recording, three video quality urls; without motion detection and sound
+      // Camera 2
+      // example with continius recording, three video quality urls; without motion detection and sound
       {
          "archiveId" : 0,
          "id" : 1,
@@ -112,7 +115,8 @@ The best way to create a configuration file is to setup Ivideon Server applicati
          "useCameraMotionDetector" : false,
          "useSound" : false 
       },
-      // Camera 3 - example with motion detection recording; without sound
+      // Camera 3
+      // example with motion detection recording; without sound
       {
          "id" : 2,
          "mdExcludedZoneList" : [
