@@ -1,5 +1,5 @@
 # sisaenkov/transmission
-[![](https://images.microbadger.com/badges/version/sisaenkov/transmission.svg)](https://microbadger.com/images/sisaenkov/transmission) [![](https://images.microbadger.com/badges/image/sisaenkov/transmission.svg)](https://microbadger.com/images/sisaenkov/transmission) ![](https://img.shields.io/docker/pulls/sisaenkov/transmission.svg) ![](https://img.shields.io/docker/stars/sisaenkov/transmission.svg)
+[![](https://images.microbadger.com/badges/version/sisaenkov/transmission:2.94.svg)](https://microbadger.com/images/sisaenkov/transmission:2.94) [![](https://images.microbadger.com/badges/image/sisaenkov/transmission.svg)](https://microbadger.com/images/sisaenkov/transmission) ![](https://img.shields.io/docker/pulls/sisaenkov/transmission.svg) ![](https://img.shields.io/docker/stars/sisaenkov/transmission.svg)
 
 [Transmission](http://www.transmissionbt.com/about/) is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.
 
@@ -12,26 +12,34 @@
 
 ## Usage
 
-```
-docker create --name=transmission \
--v <path to data>:/config \
--v <path to downloads>:/downloads \
--e PGID=<gid> -e PUID=<uid> \
--e TZ=<timezone> \
--p 9091:9091 -p 10894:10894 \
--p 10894:10894/udp \
-sisaenkov/transmission
+```bash
+$ docker run -d --name=transmission --restart=always \
+	-v <path_to_config>:/config \
+	-v <path_to_downloads>:/downloads \
+	-e PGID=<gid> -e PUID=<uid> \
+	-e TZ=<timezone> \
+	-p 9091:9091 -p 10894:10894 \
+	-p 10894:10894/udp \
+	sisaenkov/transmission
 ```
 
 ## Parameters
 
-* `-p 9091` 
-* `-p 10894` - peer listening ports (tcp and udp)
-* `-v /config` - transmission config files and logs directory
-* `-v /downloads` - local path for downloads
-* `-e PGID` specifies the GroupID for the container internal transmission group (used for file ownership)
-* `-e PUID` specifies the UserID for the container internal transmission user (used for process and file ownership)
-* `-e TZ` timezone information, eg Europe/Moscow
+### Volumes:
+* `/config` - transmission config files and logs directory
+* `/downloads` - local path for downloads
+ 
+### Ports:
+* `9091/tcp` (WebUI port)
+* `10894/tcp` (peer listening port)
+* `10894/udp` (peer listening port)
+
+### Environment variables:
+| Variable | Default | Description |
+|--|--|--|
+| `PUID` | 1020 | specifies the GroupID for the container internal transmission group (used for file ownership) |
+| `PGID` | 1020 | specifies the UserID for the container internal transmission user (used for process and file ownership) |
+| `TZ` || timezone information, eg Europe/Moscow |
 
 ## Setting up the application 
 
@@ -41,7 +49,7 @@ WebUI is on port 9091, the settings.json file in /config has extra settings not 
 
 This requires 3 settings to be changed in the settings.json file.
 
-`Make sure the container is stopped before editing these settings.`
+**Make sure the container is stopped before editing these settings.**
 
 `"rpc-authentication-required": true,` - check this, the default is false, change to true.
 
