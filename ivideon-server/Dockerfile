@@ -1,9 +1,15 @@
 FROM ubuntu:16.04
 
-ARG BUILD_DATE=20190102
-ARG VERSION=1
-LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="s.isaenkov"
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION=3.7.0.2642
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.url="https://github.com/sisaenkov/docker/tree/master/ivideon-server" \
+      org.label-schema.vcs-url="https://github.com/sisaenkov/docker.git" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
 
 RUN export DEBIAN_FRONTEND=noninteractive \
   && echo "debconf debconf/frontend select noninteractive" | debconf-set-selections \
