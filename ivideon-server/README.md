@@ -1,7 +1,7 @@
 # Ivideon Video Server (without GUI)
 ### Version 3.7.0.2642
 
-(https://i1.wp.com/missiontech.com.au/wp-content/uploads/2017/08/Ivideon-Logo.png)
+(https://i1.wp.com/missiontech.com.au/wp-content/uploads/2017/08/Ivideon-Logo.png)[ivideon]
 
 ## Usage
 
