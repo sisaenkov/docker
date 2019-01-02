@@ -44,8 +44,6 @@ The best way to create a configuration file is to setup Ivideon Server applicati
 
 #### videoserverd.config
 
-> It is not recommended to left in config any parameter blocks not described in this example and transferred after GUI setup.
-
 ```json
 {
    // default archive location settings
@@ -152,3 +150,5 @@ The best way to create a configuration file is to setup Ivideon Server applicati
    }
 }
 ```
+
+> It is not recommended to left in config any parameter blocks not described in this example and transferred after GUI setup.
