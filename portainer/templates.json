@@ -53,7 +53,8 @@
         "bind": "/mnt/docker-data/ivideon"
       },
       {
-        "container": "/archive"
+        "container": "/archive",
+        "bind": "/mnt/ivideon_archive"
       }
     ],
     "env": [
