@@ -54,7 +54,7 @@ The best way to create a configuration file is to setup Ivideon Server applicati
       "path" : "/archive",
       "sizeLimit" : 5120,               // in MB
       "sizeToCleanup" : 1024,           // in MB
-      "useArchive" : false,			// set true to enable. Also don't forget to set docker volume.
+      "useArchive" : false,			 // set true to enable. Also don't forget to set docker volume.
       "useEventLog" : false,
       "webcamBitRate" : 2048,           // 512, 1024, 2048, 3072, 4096 (kbit/s)
       "webcamFrameRate" : 30,           // 2, 5, 10, 15, 20, 25, 30 (fps)
@@ -119,7 +119,7 @@ The best way to create a configuration file is to setup Ivideon Server applicati
          "id" : 2,
          "mdExcludedZoneList" : [
             [ 129, 456, 9892, 10000 ]
-         ],									// depends on video stream resolution
+         ],								       // depends on video stream resolution
          "mdSensitivity" : 60,				// 1-100 (higher - more sensitive)
          "name" : "Camera 3 (Door)",
          "recordQuality" : "high",			// high, medium, low, high+medium, high+low
@@ -151,4 +151,4 @@ The best way to create a configuration file is to setup Ivideon Server applicati
 }
 ```
 
-> It is not recommended to left in config any parameter blocks not described in this example and transferred after GUI setup.
+> It is not recommended for the first run to leave in config any parameter blocks not described in this example and left after GUI setup.
