@@ -21,6 +21,8 @@ $ docker run -d --name=ivideon-server --restart=always \
 	sisaenkov/ivideon-server
 ```
 
+If you have no config yet, during first run server will use default one and will automatically be registered in Ivideon Cloud with a name set in `SERVER_NAME` variable.
+
 ## Parameters
 
 ### Volumes:
