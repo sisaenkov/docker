@@ -127,7 +127,7 @@
     "name": "unifi",
     "note": "Choose right network (macvlan preferred). This container must be exposed to the outside.",
     "platform": "linux",
-    "image": "sisaenkov/unifi:latest",
+    "image": "goofball222/unifi:latest",
     "hostname": "unifi",
     "network": "physical",
     "ports": [
