@@ -1,0 +1,210 @@
+[
+  {
+    "type": 1,
+    "title": "Home Assistant metrics",
+    "description": "Used to show data from a Home Assistant installation",
+    "logo": "https://gitlab.com/uploads/-/system/project/avatar/928825/grafana_icon.png",
+    "name": "hametrics",
+    "platform": "linux",
+    "image": "philhawthorne/docker-influxdb-grafana:latest",
+    "hostname": "hametrics",
+    "network": "physical",
+    "ports": [
+      "3003/tcp",
+      "3004:8888/tcp",
+      "8086:8086/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/var/lib/influxdb",
+        "bind": "/mnt/docker-data/hametrics/influxdb"
+      },
+      {
+        "container": "/var/lib/grafana",
+        "bind": "/mnt/docker-data/hametrics/grafana"
+      }
+    ],
+    "env": [
+      {
+        "name": "TERM",
+        "default": "xterm",
+        "preset": true
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
+    "title": "Ivideon Server",
+    "description": "A cloud-based video surveillance solution for business and the home",
+    "logo": "https://images-na.ssl-images-amazon.com/images/I/41220Z0NcRL._SY355_.png",
+    "name": "ivideon-server",
+    "note": "Choose physical (macvlan) network to be container accessible from the outside for the Ivideon Client local view.<br />If you don't need local view (only cloud), you can choose bridge network.",
+    "platform": "linux",
+    "image": "sisaenkov/ivideon-server:latest",
+    "hostname": "ivideon",
+    "network": "physical",
+    "ports": [
+      "8080/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/mnt/docker-data/ivideon"
+      },
+      {
+        "container": "/archive"
+      }
+    ],
+    "env": [
+      {
+        "name": "EMAIL",
+        "label": "Email",
+        "description": "Your ivideon.com account"
+      },
+      {
+        "name": "SERVER_NAME",
+        "label": "Server name",
+        "description": "Ivideon server name without spaces (displayed in Ivideon Client and Web UI)",
+        "default": "Home"
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
+    "title": "Transmission",
+    "description": "Cross-platform BitTorrent client",
+    "logo": "http://cdn.warer.com/media/transmission-logo.png",
+    "name": "transmission",
+    "platform": "linux",
+    "image": "sisaenkov/transmission:latest",
+    "hostname": "torrent",
+    "network": "bridge",
+    "ports": [
+      "9091/tcp",
+      "10894/tcp",
+      "10894/udp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/mnt/docker-data/transmission"
+      },
+      {
+        "container": "/downloads",
+        "bind": "/mnt/Torrents"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "UID",
+        "description": "Specifies the UID for the container internal transmission user (used for process and file ownership)",
+        "default": "1020"
+      },
+      {
+        "name": "PGID",
+        "label": "GID",
+        "description": "Specifies the GID for the container internal transmission group (used for file ownership)",
+        "default": "1020"
+      },
+      {
+        "name": "TZ",
+        "label": "Timezone",
+        "description": "e.g. Europe/Moscow",
+        "default": "Europe/Moscow"
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
+    "title": "UniFi Controller",
+    "description": "Ubiquiti Networks UniFi Controller",
+    "logo": "https://dl.ubnt.com/press/Company_Logos/U_Logo/WEB/U_Logo_RGB.jpg",
+    "name": "unifi",
+    "note": "Choose right network (macvlan preferred). This container must be exposed to the outside.",
+    "platform": "linux",
+    "image": "sisaenkov/ivideon-server:latest",
+    "hostname": "unifi",
+    "network": "physical",
+    "ports": [
+      "3478/udp",
+      "6789/tcp",
+      "8080/tcp",
+      "8443/tcp",
+      "8843/tcp",
+      "8880/tcp",
+      "10001/udp"
+    ],
+    "volumes": [
+      {
+        "container": "/usr/lib/unifi/data",
+        "bind": "/mnt/docker-data/unifi"
+      },
+      {
+        "container": "/usr/lib/unifi/cert",
+        "bind": "/mnt/docker-data/unifi/cert"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "UID",
+        "description": "Specifies the UID for the container internal unifi user (used for process and file ownership)",
+        "default": "1020"
+      },
+      {
+        "name": "PGID",
+        "label": "GID",
+        "description": "Specifies the GID for the container internal unifi group (used for file ownership)",
+        "default": "1020"
+      },
+      {
+        "name": "TZ",
+        "label": "Timezone",
+        "description": "e.g. Europe/Moscow",
+        "default": "Europe/Moscow"
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
+    "title": "Zabbix Proxy",
+    "description": "version 3.4.15 with sqlite3 database",
+    "logo": "https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
+    "name": "zabbix-proxy",
+    "note": "Choose right network (macvlan preferred). This container must be exposed from the outside for agents to connect to it.",
+    "platform": "linux",
+    "image": "zabbix/zabbix-proxy-sqlite3:alpine-3.4.15",
+    "hostname": "zproxy01",
+    "network": "physical",
+    "env": [
+      {
+        "name": "ZBX_PROXYMODE",
+        "label": "Zabbix Proxy mode",
+        "description": "ZBX_PROXYMODE - The variable allows to switch Zabbix proxy mode. Bu default, value is 0 - active proxy. Allowed values are 0 - active proxy and 1 - passive proxy.",
+        "default": "0"
+      },
+      {
+        "name": "ZBX_HOSTNAME",
+        "label": "Zabbix Proxy hostname",
+        "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname."
+      },
+      {
+        "name": "ZBX_SERVER_HOST",
+        "label": "Zabbix Server host",
+        "description": "ZBX_SERVER_HOST - This variable is IP or DNS name of Zabbix server or Zabbix proxy."
+      },
+      {
+        "name": "ZBX_SERVER_PORT",
+        "label": "Zabbix Server port",
+        "description": "ZBX_SERVER_PORT - This variable is port Zabbix server listening on.",
+        "default": "10051"
+      }
+    ],
+    "restart_policy": "always"
+  }
+]
