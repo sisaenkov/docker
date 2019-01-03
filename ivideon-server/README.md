@@ -43,7 +43,7 @@ $ docker run -d --name=ivideon-server --restart=always \
 * `/config/schedule.json` - job scheduler
 * `/config/videoserverd.config` - cameras, logs and archives
 
-The best way to create a configuration file is to setup Ivideon Server application through a graphical interface on any Desktop Linux system. Then copy obtained config file from `~/.IvideonServer/videoserverd.config` to `/config` volume location.
+The best way to create a configuration file is to setup Ivideon Server application through a graphical interface on any Desktop Windows or Linux system. Then copy obtained config file from `~/.IvideonServer/videoserverd.config` or `C:\Users\<USER>\AppData\Local\Ivideon\IvideonServer\videoserverd.config` to `/config` volume location.
 
 #### videoserverd.config
 
