@@ -39,7 +39,6 @@ $ docker run -d --name=ivideon-server --restart=always \
 
 ## Config example
 
-* `/config/config.xml` - Ivideon Cloud access settings (generated during server first run)
 * `/config/schedule.json` - job scheduler
 * `/config/videoserverd.config` - cameras, logs and archives
 
