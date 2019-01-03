@@ -150,4 +150,13 @@ The best way to create a configuration file is to setup Ivideon Server applicati
 }
 ```
 
-> It is not recommended for the first run to leave in config any parameter blocks not described in this example and left after GUI setup.
+> If you have already setup Ivideon Server via GUI and bound it with Ivideon Cloud there will be `account` parameter block at the begin of config file:
+
+```
+   "account" : {
+      "email" : "your@ivideon.email",
+      "password" : "gYoaXbrYZwqbh7Lc",
+      "serverName" : "Home",
+      "uin" : 100001234567
+   },
+```
