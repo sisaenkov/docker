@@ -6,8 +6,8 @@
 [![transmission](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/transmission.png)](https://transmissionbt.com)
 
 ## Overview
-* Based on [linuxserver/transmission](https://github.com/linuxserver/docker-transmission)
-* Optimized for personal needs: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11.2](http://freenas.org/) + [portainer.io](https://www.portainer.io/) [templates](https://github.com/sisaenkov/docker/blob/master/portainer/templates.json).
+* Based on [linuxserver/transmission](https://github.com/linuxserver/docker-transmission).
+* Optimized for myself: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11.2](http://freenas.org/) + [portainer.io](https://www.portainer.io/) [templates](https://github.com/sisaenkov/docker/blob/master/portainer/templates.json).
 * Disabled creation of complete/incomplete directories, disabled /watch directory.
 
 ## Usage
