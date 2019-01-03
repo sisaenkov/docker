@@ -17,8 +17,6 @@ mkdir -p /archive /opt/ivideon/videoserverd
 touch /config/service.log
 [ ! -f /opt/ivideon/ivideon-server/service.log ] && ln -s /config/service.log /opt/ivideon/ivideon-server/service.log
 
-chown -R www-data:www-data /config/*
-
 # Register server in Ivideon Cloud
 if [[ `grep account /opt/ivideon/ivideon-server/videoserverd.config` ]]; then
 	echo "This server is already registered in Ivideon cloud."
