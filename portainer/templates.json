@@ -126,7 +126,7 @@
     "name": "unifi",
     "note": "Choose right network (macvlan preferred). This container must be exposed to the outside.",
     "platform": "linux",
-    "image": "sisaenkov/ivideon-server:latest",
+    "image": "sisaenkov/unifi:latest",
     "hostname": "unifi",
     "network": "physical",
     "ports": [
