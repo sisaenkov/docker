@@ -122,7 +122,7 @@ The best way to create a configuration file is to setup Ivideon Server applicati
          "id" : 2,
          "mdExcludedZoneList" : [
             [ 129, 456, 9892, 10000 ]
-         ],								       // depends on video stream resolution
+         ],								   // depends on video stream resolution
          "mdSensitivity" : 60,				// 1-100 (higher - more sensitive)
          "name" : "Camera 3 (Door)",
          "recordQuality" : "high",			// high, medium, low, high+medium, high+low
