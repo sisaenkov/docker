@@ -1,4 +1,3 @@
-
 # Ivideon Video Server (without GUI)
 [![](https://images.microbadger.com/badges/version/sisaenkov/ivideon-server:3.7.0.2642.svg)](https://microbadger.com/images/sisaenkov/ivideon-server:3.7.0.2642) [![](https://images.microbadger.com/badges/image/sisaenkov/ivideon-server.svg)](https://microbadger.com/images/sisaenkov/ivideon-server) ![](https://img.shields.io/docker/pulls/sisaenkov/ivideon-server.svg) ![](https://img.shields.io/docker/stars/sisaenkov/ivideon-server.svg) [![](https://img.shields.io/badge/github-repo-brightgreen.svg)](https://github.com/sisaenkov/docker/tree/master/ivideon-server)
 
