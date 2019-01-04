@@ -10,7 +10,7 @@
     "hostname": "hametrics",
     "network": "physical",
     "ports": [
-      "3003/tcp",
+      "3003:3003/tcp",
       "3004:8888/tcp",
       "8086:8086/tcp"
     ],
@@ -45,7 +45,7 @@
     "hostname": "ivideon",
     "network": "physical",
     "ports": [
-      "8080/tcp"
+      "8080:8080/tcp"
     ],
     "volumes": [
       {
@@ -83,9 +83,9 @@
     "hostname": "torrent",
     "network": "bridge",
     "ports": [
-      "9091/tcp",
-      "10894/tcp",
-      "10894/udp"
+      "9091:9091/tcp",
+      "10894:10894/tcp",
+      "10894:10894/udp"
     ],
     "volumes": [
       {
@@ -131,13 +131,13 @@
     "hostname": "unifi",
     "network": "physical",
     "ports": [
-      "3478/udp",
-      "6789/tcp",
-      "8080/tcp",
-      "8443/tcp",
-      "8843/tcp",
-      "8880/tcp",
-      "10001/udp"
+      "3478:3478/udp",
+      "6789:6789/tcp",
+      "8080:8080/tcp",
+      "8443:8443/tcp",
+      "8843:8843/tcp",
+      "8880:8880/tcp",
+      "10001:10001/udp"
     ],
     "volumes": [
       {
