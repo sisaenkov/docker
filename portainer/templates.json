@@ -174,13 +174,13 @@
   {
     "type": 1,
     "title": "Zabbix Agent",
-    "description": "version 3.4.15 ",
+    "description": "version 3.4.15",
     "logo": "https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
     "name": "zabbix-agent",
     "note": "Choose right network (bridge preferred). This container port must be exposed for server to connect to it.",
     "platform": "linux",
     "image": "zabbix/zabbix-agent:alpine-3.4.15",
-    "hostname": "zabbix-agent",
+    "hostname": "zagent01",
     "network": "bridge",
     "ports": [
       "10050:10050/tcp"
