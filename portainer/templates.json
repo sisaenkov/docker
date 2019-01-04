@@ -39,11 +39,11 @@
     "description": "A cloud-based video surveillance solution for business and the home",
     "logo": "https://images-na.ssl-images-amazon.com/images/I/41220Z0NcRL._SY355_.png",
     "name": "ivideon-server",
-    "note": "Choose physical (macvlan) network to be container accessible from the outside for the Ivideon Client local view.<br />If you don't need local view (only cloud), you can choose bridge network.",
+    "note": "Choose bridge network to access Ivideon Cloud and to be container accessible from the outside for the Ivideon Client local view.",
     "platform": "linux",
     "image": "sisaenkov/ivideon-server:latest",
     "hostname": "ivideon",
-    "network": "physical",
+    "network": "bridge",
     "ports": [
       "8080:8080/tcp"
     ],
@@ -125,7 +125,7 @@
     "description": "Ubiquiti Networks UniFi Controller",
     "logo": "https://dl.ubnt.com/press/Company_Logos/U_Logo/WEB/U_Logo_RGB.jpg",
     "name": "unifi",
-    "note": "Choose right network (macvlan preferred). This container must be exposed to the outside.",
+    "note": "Choose right network (macvlan preferred). This container must be exposed to the outside. Bridge network does not work properly.",
     "platform": "linux",
     "image": "goofball222/unifi:latest",
     "hostname": "unifi",
@@ -177,11 +177,14 @@
     "description": "version 3.4.15 with sqlite3 database",
     "logo": "https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
     "name": "zabbix-proxy",
-    "note": "Choose right network (macvlan preferred). This container must be exposed from the outside for agents to connect to it.",
+    "note": "Choose right network (bridge preferred). This container port must be exposed for agents to connect to it.",
     "platform": "linux",
     "image": "zabbix/zabbix-proxy-sqlite3:alpine-3.4.15",
     "hostname": "zproxy01",
-    "network": "physical",
+    "network": "bridge",
+    "ports": [
+      "10051:10051/tcp"
+    ],
     "env": [
       {
         "name": "ZBX_PROXYMODE",
