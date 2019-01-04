@@ -198,7 +198,7 @@
       },
       {
         "name": "ZBX_ENABLEREMOTECOMMANDS",
-        "label": "Enable remote commands"
+        "label": "Enable remote commands",
         "default": "1"
       }
     ],
