@@ -190,7 +190,7 @@
         "name": "ZBX_HOSTNAME",
         "label": "Zabbix Agent hostname",
         "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
-        "default": "zagent01"
+        "default": "docker"
       },
       {
         "name": "ZBX_SERVER_HOST",
