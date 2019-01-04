@@ -229,7 +229,8 @@
       {
         "name": "ZBX_HOSTNAME",
         "label": "Zabbix Proxy hostname",
-        "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname."
+        "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
+        "default": "zproxy01"
       },
       {
         "name": "ZBX_SERVER_HOST",
