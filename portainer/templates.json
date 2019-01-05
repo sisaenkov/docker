@@ -207,6 +207,12 @@
         "name": "ZBX_ENABLEREMOTECOMMANDS",
         "label": "Enable remote commands",
         "default": "1"
+      },
+      {
+        "name": "ZBX_PASSIVESERVERS",
+        "label": "Zabbix passive servers",
+        "description": "The variable is comma separated list of allowed Zabbix server or proxy hosts for connections to Zabbix agent container. By default - docker bridge interface address.",
+        "default": "172.17.0.1"
       }
     ],
     "privileged": true,
