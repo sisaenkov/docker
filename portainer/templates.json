@@ -8,7 +8,7 @@
     "platform": "linux",
     "image": "philhawthorne/docker-influxdb-grafana:latest",
     "hostname": "hametrics",
-    "network": "physical",
+    "network": "bridge",
     "ports": [
       "3003:3003/tcp",
       "3004:8888/tcp",
@@ -26,8 +26,14 @@
     ],
     "env": [
       {
-        "name": "TERM",
-        "default": "xterm",
+        "name": "GF_USERS_ALLOW_SIGN_UP",
+        "label": "Allow sign up",
+        "description": "Allow users to sign up. Defaults to false. The admin user can still create users from the Grafana Admin Pages.",
+        "default": "false"
+      },
+      {
+        "name": "GF_ANALYTICS_REPORTING_ENABLED",
+        "default": "false",
         "preset": true
       }
     ],
