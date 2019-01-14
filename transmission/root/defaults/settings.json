@@ -62,7 +62,5 @@
     "trash-original-torrent-files": true,
     "umask": 0,
     "upload-slots-per-torrent": 14,
-    "utp-enabled": true,
-    "watch-dir": "/watch",
-    "watch-dir-enabled": false
+    "utp-enabled": true
 }

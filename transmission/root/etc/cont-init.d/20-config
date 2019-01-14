@@ -2,7 +2,7 @@
 
 # make folders
 mkdir -p \
-	/downloads /watch
+	/downloads
 
 # copy config
 [[ ! -f /config/settings.json ]] && cp \
@@ -13,10 +13,8 @@ mkdir -p \
 	/defaults/blocklist-update.sh /config/blocklist-update.sh
 
 # permissions
-chown abc:abc \
-	/config/settings.json \
-	/config/blocklist-update.sh \
-	/downloads \
-	/watch
+chown -R abc:abc \
+	/config \
+	/downloads
 
 chmod 755 /config/blocklist-update.sh
