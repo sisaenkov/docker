@@ -173,6 +173,12 @@
         "label": "Timezone",
         "description": "e.g. Europe/Moscow",
         "default": "Europe/Moscow"
+      },
+      {
+        "name": "RUN_CHOWN",
+        "label": "RUN_CHOWN",
+        "description": "Set to false to disable the container automatic chown at startup. Speeds up startup process on overlay2 Docker hosts.",
+        "default": "true"
       }
     ],
     "restart_policy": "always"
