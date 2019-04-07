@@ -103,7 +103,8 @@
       },
       {
         "container": "/data",
-        "bind": "/mnt/Media"
+        "bind": "/mnt/Media",
+        "readonly": true
       }
     ],
     "env": [
