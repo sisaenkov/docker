@@ -80,6 +80,46 @@
   },
   {
     "type": 1,
+    "title": "Plex Media Server",
+    "description": "Client-server media player system and software suite comprising two main components",
+    "logo": "http://img.clubic.com/08231866-photo-logo-plex.jpg",
+    "name": "plex",
+    "platform": "linux",
+    "image": "linuxserver/plex:amd64-latest",
+    "hostname": "plex",
+    "network": "bridge",
+    "ports": [
+      "32400:32400/tcp",
+      "32400:32400/udp",
+      "32469:32469/tcp",
+      "32469:32469/udp",
+      "5353:5353/udp",
+      "1900:1900/udp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/mnt/docker-data/plex/config"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "UID",
+        "description": "Specifies the UID for the container internal plex user (used for process and file ownership)",
+        "default": "1020"
+      },
+      {
+        "name": "PGID",
+        "label": "GID",
+        "description": "Specifies the GID for the container internal plex group (used for file ownership)",
+        "default": "1020"
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
     "title": "Transmission",
     "description": "Cross-platform BitTorrent client",
     "logo": "http://cdn.warer.com/media/transmission-logo.png",
