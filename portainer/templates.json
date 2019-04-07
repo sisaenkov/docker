@@ -114,9 +114,15 @@
         "label": "GID",
         "description": "Specifies the GID for the container internal plex group (used for file ownership)",
         "default": "1020"
+      },
+      {
+        "name": "VERSION",
+        "label": "Version",
+        "description": "Let Docker handle the Plex Version",
+        "default": "docker"
       }
     ],
-    "restart_policy": "always"
+    "restart_policy": "unless-stopped"
   },
   {
     "type": 1,
