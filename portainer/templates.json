@@ -1,6 +1,27 @@
 [
   {
     "type": 1,
+    "title": "Bitwarden",
+    "description": "Free and open source password management solution for individuals, teams, and business organizations",
+    "logo": "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
+    "name": "bitwarden",
+    "platform": "linux",
+    "image": "mprasil/bitwarden:latest",
+    "hostname": "bitwarden",
+    "network": "bridge",
+    "ports": [
+      "8800:80/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "/mnt/docker-data/bitwarden"
+      }
+    ],
+    "restart_policy": "unless-stopped"
+  },
+  {
+    "type": 1,
     "title": "Duplicati",
     "description": "Free backup software to store encrypted backups online",
     "logo": "https://www.duplicati.com/images/duplicati-fb-share-v1.png",
