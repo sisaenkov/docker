@@ -40,11 +40,12 @@
       },
       {
         "container": "/backups",
-        "bind": ""
+        "bind": "/mnt/back_up"
       },
       {
         "container": "/source",
-        "bind": ""
+        "bind": "/mnt/back_up",
+        "readonly": true
       }
     ],
     "env": [
