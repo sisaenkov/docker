@@ -18,6 +18,7 @@
         "bind": "/mnt/docker-data/bitwarden"
       }
     ],
+    "env": [],
     "restart_policy": "unless-stopped"
   },
   {
