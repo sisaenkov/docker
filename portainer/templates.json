@@ -40,12 +40,16 @@
       },
       {
         "container": "/backups",
-        "bind": "/mnt/back_up"
+        "bind": "/mnt/qnap/duplicati"
       },
       {
         "container": "/source",
         "bind": "/mnt/back_up",
         "readonly": true
+      },
+      {
+        "container": "/backup_temp",
+        "bind": "/mnt/temp"
       }
     ],
     "env": [
