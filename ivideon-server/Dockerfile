@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 ARG BUILD_DATE
-ARG VERSION=3.7.0.2642
+ARG VERSION=3.8.0.3339
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/sisaenkov/docker/tree/master/ivideon-server" \
