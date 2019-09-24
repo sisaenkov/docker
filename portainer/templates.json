@@ -1,6 +1,39 @@
 [
   {
     "type": 1,
+    "title": "AdGuard Home",
+    "description": "Free and open source, powerful network-wide ads & trackers blocking DNS server",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/48/AdGuard_Logo.png",
+    "name": "adguard",
+    "platform": "linux",
+    "image": "adguard/adguardhome:latest",
+    "hostname": "adguard",
+    "network": "bridge",
+    "ports": [
+      "53:53/tcp",
+      "53:53/udp",
+      "67:67/udp",
+      "68:68/tcp",
+      "68:68/udp",
+      "80:80/tcp",
+      "443:443/tcp",
+      "853:853/tcp",
+      "3000:3000/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/opt/adguardhome/work",
+        "bind": "/mnt/docker-data/adguard/data"
+      },
+      {
+        "container": "/opt/adguardhome/conf",
+        "bind": "/mnt/docker-data/adguard/conf"
+      }
+    ],
+    "restart_policy": "always"
+  },
+  {
+    "type": 1,
     "title": "Bitwarden",
     "description": "Free and open source password management solution for individuals, teams, and business organizations",
     "logo": "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
