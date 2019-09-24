@@ -190,7 +190,7 @@
     "type": 1,
     "title": "Plex Media Server",
     "description": "Client-server media player system and software suite comprising two main components",
-    "logo": "http://img.clubic.com/08231866-photo-logo-plex.jpg",
+    "logo": "https://pbs.twimg.com/profile_images/877289188747427840/LUfuf8ow.jpg",
     "name": "plex",
     "platform": "linux",
     "image": "linuxserver/plex:amd64-latest",
