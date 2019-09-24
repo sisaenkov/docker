@@ -35,7 +35,7 @@
   {
     "type": 1,
     "title": "Bitwarden",
-    "description": "Free and open source password management solution for individuals, teams, and business organizations",
+    "description": "Unofficial Bitwarden compatible server written in Rust - Free and open source password management solution for individuals, teams, and business organizations",
     "logo": "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
     "name": "bitwarden",
     "platform": "linux",
@@ -73,12 +73,16 @@
       },
       {
         "container": "/backups",
-        "bind": "/mnt/back_up"
+        "bind": "/mnt/qnap/duplicati"
       },
       {
         "container": "/source",
         "bind": "/mnt/back_up",
         "readonly": true
+      },
+      {
+        "container": "/backup_temp",
+        "bind": "/mnt/temp"
       }
     ],
     "env": [
