@@ -215,7 +215,7 @@
       },
       {
         "container": "/opt/shinobi/videos",
-        "bind": "/mnt/ivideon_archive/shinobi"
+        "bind": "/mnt/ivideon_archive"
       }
     ],
     "env": [
