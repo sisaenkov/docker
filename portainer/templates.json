@@ -55,60 +55,6 @@
   },
   {
     "type": 1,
-    "title": "Duplicati",
-    "description": "Free backup software to store encrypted backups online",
-    "logo": "https://www.duplicati.com/images/duplicati-fb-share-v1.png",
-    "name": "duplicati",
-    "platform": "linux",
-    "image": "linuxserver/duplicati:latest",
-    "hostname": "duplicati",
-    "network": "bridge",
-    "ports": [
-      "8200:8200/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/config",
-        "bind": "/mnt/docker-data/duplicati"
-      },
-      {
-        "container": "/backups",
-        "bind": "/mnt/qnap/duplicati"
-      },
-      {
-        "container": "/source",
-        "bind": "/mnt/back_up",
-        "readonly": true
-      },
-      {
-        "container": "/backup_temp",
-        "bind": "/mnt/temp"
-      }
-    ],
-    "env": [
-      {
-        "name": "PUID",
-        "label": "UID",
-        "description": "Specifies the UID for the container internal duplicati user (used for process and file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "PGID",
-        "label": "GID",
-        "description": "Specifies the GID for the container internal duplicati group (used for file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "TZ",
-        "label": "Timezone",
-        "description": "e.g. Europe/Moscow",
-        "default": "Europe/Moscow"
-      }
-    ],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
     "title": "Home Assistant metrics",
     "description": "Used to show data from a Home Assistant installation",
     "logo": "https://gitlab.com/uploads/-/system/project/avatar/928825/grafana_icon.png",
@@ -233,6 +179,51 @@
         "label": "Version",
         "description": "Let Docker handle the Plex Version",
         "default": "docker"
+      }
+    ],
+    "restart_policy": "unless-stopped"
+  },
+  {
+    "type": 1,
+    "title": "Shinobi",
+    "description": "The opensource CCTV solution",
+    "logo": "https://shinobi.video/libs/assets/icon/apple-touch-icon-152x152.png",
+    "name": "shinobi",
+    "platform": "linux",
+    "image": "shinobicctv/shinobi:latest",
+    "hostname": "shinobi",
+    "network": "bridge",
+    "ports": [
+      "8013:8080/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/dev/shm/shinobiStreams",
+        "bind": "/dev/shm/streams"
+      },
+      {
+        "container": "/config",
+        "bind": "/mnt/docker-data/shinobi/config"
+      },
+      {
+        "container": "/customAutoLoad",
+        "bind": "/mnt/docker-data/shinobi/customAutoLoad"
+      },
+      {
+        "container": "/var/lib/mysql",
+        "bind": "/mnt/docker-data/shinobi/database"
+      },
+      {
+        "container": "/opt/shinobi/videos",
+        "bind": "/mnt/ivideon_archive/shinobi"
+      }
+    ],
+    "env": [
+      {
+        "name": "APP_BRANCH",
+        "label": "APP_BRANCH",
+        "description": "Set Branch to Development Branch (Latest code)",
+        "default": "dev"
       }
     ],
     "restart_policy": "unless-stopped"
