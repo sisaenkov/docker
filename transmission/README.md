@@ -1,5 +1,5 @@
 # sisaenkov/transmission
-[![](https://images.microbadger.com/badges/version/sisaenkov/transmission:2.94.svg)](https://microbadger.com/images/sisaenkov/transmission:2.94) [![](https://images.microbadger.com/badges/image/sisaenkov/transmission.svg)](https://microbadger.com/images/sisaenkov/transmission) ![](https://img.shields.io/docker/pulls/sisaenkov/transmission.svg) ![](https://img.shields.io/docker/stars/sisaenkov/transmission.svg) [![](https://img.shields.io/badge/github-repo-brightgreen.svg)](https://github.com/sisaenkov/docker/tree/master/transmission)
+[![](https://images.microbadger.com/badges/version/sisaenkov/transmission:3.00.svg)](https://microbadger.com/images/sisaenkov/transmission:3.00) [![](https://images.microbadger.com/badges/image/sisaenkov/transmission.svg)](https://microbadger.com/images/sisaenkov/transmission) ![](https://img.shields.io/docker/pulls/sisaenkov/transmission.svg) ![](https://img.shields.io/docker/stars/sisaenkov/transmission.svg) [![](https://img.shields.io/badge/github-repo-brightgreen.svg)](https://github.com/sisaenkov/docker/tree/master/transmission)
 
 [Transmission](http://www.transmissionbt.com/about/) is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.
 
@@ -7,7 +7,7 @@
 
 ## Overview
 * Based on [linuxserver/transmission](https://github.com/linuxserver/docker-transmission).
-* Optimized for myself: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11.2](http://freenas.org/) + [portainer.io](https://www.portainer.io/) [templates](https://github.com/sisaenkov/docker/blob/master/portainer/templates.json).
+* Optimized for myself: [Transmission easy client Chrome extension](https://chrome.google.com/webstore/detail/transmission-easy-client/cmkphjiphbjkffbcbnjiaidnjhahnned) + [FreeNAS 11](http://freenas.org/) + [portainer.io](https://www.portainer.io/) [templates](https://github.com/sisaenkov/docker/blob/master/portainer/templates.json).
 * Disabled creation of complete/incomplete directories, disabled `/watch` directory.
 
 ## Usage
