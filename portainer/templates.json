@@ -267,6 +267,18 @@
         "default": "1020"
       },
       {
+        "name": "USER",
+        "label": "USER",
+        "description": "[Optional] Specifies same as rpc-username (used for script-torrent-done)",
+        "default": ""
+      },
+      {
+        "name": "PASS",
+        "label": "PASS",
+        "description": "[Optional] Specifies same as rpc-password (used for script-torrent-done)",
+        "default": ""
+      },
+      {
         "name": "TZ",
         "label": "Timezone",
         "description": "e.g. Europe/Moscow",
