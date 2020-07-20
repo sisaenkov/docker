@@ -8,6 +8,9 @@ mkdir -p \
 [[ ! -f /config/settings.json ]] && cp \
 	/defaults/settings.json /config/settings.json
 
+[[ ! -f /config/remove_finished_ratio2.sh ]] && cp \
+	/defaults/remove_finished_ratio2.sh /config/remove_finished_ratio2.sh
+
 # copy blocklist-update script
 [[ ! -f /config/blocklist-update.sh ]] && cp \
 	/defaults/blocklist-update.sh /config/blocklist-update.sh
