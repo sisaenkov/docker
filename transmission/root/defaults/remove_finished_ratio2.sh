@@ -2,10 +2,6 @@
 
 # Clears finished downloads from Transmission with ratio more than 2.0.
 #
-# ATTENTION!
-# This script also removes downloaded files.
-# If you want another behaviour replace --remove-and-delete by --remove in string 52.
-#
 # Based on:
 # https://gist.github.com/pawelszydlo/e2e1fc424f2c9d306f3a
 #
@@ -49,7 +45,7 @@ do
     # If the torrent is 100% done and the state is one of the done states.
     if [[ "$PROGRESS" == "100" ]] && [[ "${DONE_STATES[@]}" =~ "$STATE" ]] && [[ "$RATIO" > 2.0 ]]; then
         echo "Torrent #$TORRENT_ID is done. Removing torrent from list."
-        transmission-remote $SERVER --torrent "$TORRENT_ID" --remove-and-delete
+        transmission-remote $SERVER --torrent "$TORRENT_ID" --remove
     else
         echo "Torrent #$TORRENT_ID is $PROGRESS% done with state \"$STATE\". Ignoring."
     fi
