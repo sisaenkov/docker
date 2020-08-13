@@ -1,0 +1,80 @@
+---
+# Assums longhorn storage-class, edit as needed
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ivideon-pvc-config
+  namespace: ivideon
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ivideon-pvc-archive
+  namespace: ivideon
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 32Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ivideon-server
+  namespace: ivideon
+spec:
+  selector:
+    matchLabels:
+      app: ivideon-server
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ivideon-server
+    spec:
+      initContainers:
+        - name: copy-config
+          image: debian:stable
+          command: ['bash', '-c', 'cp -v /configmap/* /config/']
+          volumeMounts:
+            - mountPath: "/configmap"
+              name: ivideon-config
+            - mountPath: "/config"
+              name: ivideon-pv-config
+      containers:
+        - name: ivideon
+          image: sisaenkov/ivideon-server
+          env:
+            - name: SERVER_NAME
+              value: "SomeNameHere"
+            - name: EMAIL
+              value: "your@email.com"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/config"
+              name: ivideon-pv-config
+            - mountPath: "/archive"
+              name: ivideon-pv-archive 
+      restartPolicy: Always
+      volumes:
+        - name: ivideon-config
+          configMap:
+            name: videoserverd-config
+        - name: ivideon-pv-config
+          persistentVolumeClaim:
+            claimName: ivideon-pvc-config
+        - name: ivideon-pv-archive
+          persistentVolumeClaim:
+            claimName: ivideon-pvc-archive
