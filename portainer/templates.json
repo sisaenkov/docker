@@ -1,430 +1,433 @@
-[
-  {
-    "type": 1,
-    "title": "AdGuard Home",
-    "description": "Free and open source, powerful network-wide ads & trackers blocking DNS server",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/48/AdGuard_Logo.png",
-    "name": "adguard",
-    "platform": "linux",
-    "image": "adguard/adguardhome:latest",
-    "hostname": "adguard",
-    "network": "physical",
-    "ports": [
-      "53:53/tcp",
-      "53:53/udp",
-      "67:67/udp",
-      "68:68/tcp",
-      "68:68/udp",
-      "80:80/tcp",
-      "443:443/tcp",
-      "853:853/tcp",
-      "3000:3000/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/opt/adguardhome/work",
-        "bind": "/mnt/docker-data/adguard/data"
-      },
-      {
-        "container": "/opt/adguardhome/conf",
-        "bind": "/mnt/docker-data/adguard/conf"
-      }
-    ],
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "Bitwarden",
-    "description": "Unofficial Bitwarden compatible server written in Rust - Free and open source password management solution for individuals, teams, and business organizations",
-    "logo": "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
-    "name": "bitwarden",
-    "platform": "linux",
-    "image": "bitwardenrs/server:latest",
-    "hostname": "bitwarden",
-    "network": "bridge",
-    "ports": [
-      "8800:80/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/data",
-        "bind": "/mnt/docker-data/bitwarden"
-      }
-    ],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Home Assistant metrics",
-    "description": "Used to show data from a Home Assistant installation",
-    "logo": "https://gitlab.com/uploads/-/system/project/avatar/928825/grafana_icon.png",
-    "name": "hametrics",
-    "platform": "linux",
-    "image": "philhawthorne/docker-influxdb-grafana:latest",
-    "hostname": "hametrics",
-    "network": "bridge",
-    "ports": [
-      "3003:3003/tcp",
-      "3004:8083/tcp",
-      "8086:8086/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/var/lib/influxdb",
-        "bind": "/mnt/docker-data/hametrics/influxdb"
-      },
-      {
-        "container": "/var/lib/grafana",
-        "bind": "/mnt/docker-data/hametrics/grafana"
-      }
-    ],
-    "env": [
-      {
-        "name": "GF_USERS_ALLOW_SIGN_UP",
-        "label": "Allow sign up",
-        "description": "Allow users to sign up. Defaults to false. The admin user can still create users from the Grafana Admin Pages.",
-        "default": "false"
-      },
-      {
-        "name": "GF_ANALYTICS_REPORTING_ENABLED",
-        "default": "false",
-        "preset": true
-      }
-    ],
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "Ivideon Server",
-    "description": "A cloud-based video surveillance solution for business and the home",
-    "logo": "https://images-na.ssl-images-amazon.com/images/I/41220Z0NcRL._SY355_.png",
-    "name": "ivideon-server",
-    "note": "Choose bridge network to access Ivideon Cloud and to be container accessible from the outside for the Ivideon Client local view.",
-    "platform": "linux",
-    "image": "sisaenkov/ivideon-server:latest",
-    "hostname": "ivideon",
-    "network": "bridge",
-    "ports": [
-      "8080:8080/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/config",
-        "bind": "/mnt/docker-data/ivideon"
-      },
-      {
-        "container": "/archive",
-        "bind": "/mnt/ivideon_archive"
-      }
-    ],
-    "env": [
-      {
-        "name": "EMAIL",
-        "label": "Email",
-        "description": "Your ivideon.com account"
-      },
-      {
-        "name": "SERVER_NAME",
-        "label": "Server name",
-        "description": "Ivideon server name without spaces (displayed in Ivideon Client and Web UI)",
-        "default": "Home"
-      }
-    ],
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "Plex Media Server",
-    "description": "Client-server media player system and software suite comprising two main components",
-    "logo": "https://www.techspot.com/images2/downloads/topdownload/2015/08/plex.png",
-    "name": "plex",
-    "platform": "linux",
-    "image": "linuxserver/plex:amd64-latest",
-    "hostname": "plex",
-    "network": "bridge",
-    "ports": [
-      "32400:32400/tcp",
-      "32400:32400/udp",
-      "32469:32469/tcp",
-      "32469:32469/udp",
-      "5353:5353/udp",
-      "1900:1900/udp"
-    ],
-    "volumes": [
-      {
-        "container": "/config",
-        "bind": "/mnt/docker-data/plex/config"
-      },
-      {
-        "container": "/data",
-        "bind": "/mnt/Media",
-        "readonly": true
-      }
-    ],
-    "env": [
-      {
-        "name": "PUID",
-        "label": "UID",
-        "description": "Specifies the UID for the container internal plex user (used for process and file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "PGID",
-        "label": "GID",
-        "description": "Specifies the GID for the container internal plex group (used for file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "VERSION",
-        "label": "Version",
-        "description": "Let Docker handle the Plex Version",
-        "default": "docker"
-      }
-    ],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Shinobi",
-    "description": "The opensource CCTV solution",
-    "logo": "https://shinobi.video/libs/assets/icon/apple-touch-icon-152x152.png",
-    "name": "shinobi",
-    "platform": "linux",
-    "image": "shinobicctv/shinobi:latest",
-    "hostname": "shinobi",
-    "network": "bridge",
-    "ports": [
-      "8013:8080/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/dev/shm/shinobiStreams",
-        "bind": "/dev/shm/streams"
-      },
-      {
-        "container": "/config",
-        "bind": "/mnt/docker-data/shinobi/config"
-      },
-      {
-        "container": "/customAutoLoad",
-        "bind": "/mnt/docker-data/shinobi/customAutoLoad"
-      },
-      {
-        "container": "/var/lib/mysql",
-        "bind": "/mnt/docker-data/shinobi/database"
-      },
-      {
-        "container": "/opt/shinobi/videos",
-        "bind": "/mnt/ivideon_archive"
-      }
-    ],
-    "env": [
-      {
-        "name": "APP_BRANCH",
-        "label": "APP_BRANCH",
-        "description": "Set Branch to Development Branch (Latest code)",
-        "default": "dev"
-      }
-    ],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Transmission",
-    "description": "Cross-platform BitTorrent client",
-    "logo": "https://cusdeb.com/static/raspberry_pi_images/images/transmission-square-logo.png",
-    "name": "transmission",
-    "platform": "linux",
-    "image": "sisaenkov/transmission:latest",
-    "hostname": "torrent",
-    "network": "bridge",
-    "ports": [
-      "9091:9091/tcp",
-      "10894:10894/tcp",
-      "10894:10894/udp"
-    ],
-    "volumes": [
-      {
-        "container": "/config",
-        "bind": "/mnt/docker-data/transmission"
-      },
-      {
-        "container": "/downloads",
-        "bind": "/mnt/Torrents"
-      }
-    ],
-    "env": [
-      {
-        "name": "PUID",
-        "label": "UID",
-        "description": "Specifies the UID for the container internal transmission user (used for process and file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "PGID",
-        "label": "GID",
-        "description": "Specifies the GID for the container internal transmission group (used for file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "USER",
-        "label": "USER",
-        "description": "[Optional] Specifies same as rpc-username (used for script-torrent-done)",
-        "default": ""
-      },
-      {
-        "name": "PASS",
-        "label": "PASS",
-        "description": "[Optional] Specifies same as rpc-password (used for script-torrent-done)",
-        "default": ""
-      },
-      {
-        "name": "TZ",
-        "label": "Timezone",
-        "description": "e.g. Europe/Moscow",
-        "default": "Europe/Moscow"
-      }
-    ],
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "UniFi Controller",
-    "description": "Ubiquiti Networks UniFi Controller",
-    "logo": "https://dl.ubnt.com/press/Company_Logos/U_Logo/WEB/U_Logo_RGB.jpg",
-    "name": "unifi",
-    "note": "Choose right network (macvlan preferred). This container must be exposed to the outside. Bridge network does not work properly.",
-    "platform": "linux",
-    "image": "goofball222/unifi:latest",
-    "hostname": "unifi",
-    "network": "physical",
-    "ports": [
-      "3478:3478/udp",
-      "6789:6789/tcp",
-      "8080:8080/tcp",
-      "8443:8443/tcp",
-      "8843:8843/tcp",
-      "8880:8880/tcp",
-      "10001:10001/udp"
-    ],
-    "volumes": [
-      {
-        "container": "/usr/lib/unifi/data",
-        "bind": "/mnt/docker-data/unifi"
-      },
-      {
-        "container": "/usr/lib/unifi/cert",
-        "bind": "/mnt/docker-data/unifi/cert"
-      }
-    ],
-    "env": [
-      {
-        "name": "PUID",
-        "label": "UID",
-        "description": "Specifies the UID for the container internal unifi user (used for process and file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "PGID",
-        "label": "GID",
-        "description": "Specifies the GID for the container internal unifi group (used for file ownership)",
-        "default": "1020"
-      },
-      {
-        "name": "TZ",
-        "label": "Timezone",
-        "description": "e.g. Europe/Moscow",
-        "default": "Europe/Moscow"
-      },
-      {
-        "name": "RUN_CHOWN",
-        "label": "RUN_CHOWN",
-        "description": "Set to false to disable the container automatic chown at startup. Speeds up startup process on overlay2 Docker hosts. It's critical that you insure directory/data permissions on all mapped volumes are correct before disabling this or UniFi and/or Mongo will not start.",
-        "default": "false"
-      }
-    ],
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "Zabbix Agent",
-    "description": "version 3.4.15",
-    "logo": "https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
-    "name": "zabbix-agent",
-    "note": "Choose right network (bridge preferred). This container port must be exposed for server to connect to it.",
-    "platform": "linux",
-    "image": "zabbix/zabbix-agent:alpine-3.4.15",
-    "hostname": "zagent01",
-    "network": "bridge",
-    "ports": [
-      "10050:10050/tcp"
-    ],
-    "env": [
-      {
-        "name": "ZBX_HOSTNAME",
-        "label": "Zabbix Agent hostname",
-        "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
-        "default": "docker"
-      },
-      {
-        "name": "ZBX_SERVER_HOST",
-        "label": "Zabbix Server host",
-        "description": "ZBX_SERVER_HOST - This variable is IP or DNS name of Zabbix server or Zabbix proxy."
-      },
-      {
-        "name": "ZBX_ENABLEREMOTECOMMANDS",
-        "label": "Enable remote commands",
-        "default": "1"
-      },
-      {
-        "name": "ZBX_PASSIVESERVERS",
-        "label": "Zabbix passive servers",
-        "description": "The variable is comma separated list of allowed Zabbix server or proxy hosts for connections to Zabbix agent container. By default - docker bridge interface address.",
-        "default": "172.17.0.1"
-      }
-    ],
-    "privileged": true,
-    "restart_policy": "always"
-  },
-  {
-    "type": 1,
-    "title": "Zabbix Proxy",
-    "description": "version 3.4.15 with sqlite3 database",
-    "logo": "https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
-    "name": "zabbix-proxy",
-    "note": "Choose right network (bridge preferred). This container port must be exposed for agents to connect to it.",
-    "platform": "linux",
-    "image": "zabbix/zabbix-proxy-sqlite3:alpine-3.4.15",
-    "hostname": "zproxy01",
-    "network": "bridge",
-    "ports": [
-      "10051:10051/tcp"
-    ],
-    "env": [
-      {
-        "name": "ZBX_PROXYMODE",
-        "label": "Zabbix Proxy mode",
-        "description": "ZBX_PROXYMODE - The variable allows to switch Zabbix proxy mode. Bu default, value is 0 - active proxy. Allowed values are 0 - active proxy and 1 - passive proxy.",
-        "default": "0"
-      },
-      {
-        "name": "ZBX_HOSTNAME",
-        "label": "Zabbix Proxy hostname",
-        "description": "ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
-        "default": "zproxy01"
-      },
-      {
-        "name": "ZBX_SERVER_HOST",
-        "label": "Zabbix Server host",
-        "description": "ZBX_SERVER_HOST - This variable is IP or DNS name of Zabbix server or Zabbix proxy."
-      },
-      {
-        "name": "ZBX_SERVER_PORT",
-        "label": "Zabbix Server port",
-        "description": "ZBX_SERVER_PORT - This variable is port Zabbix server listening on.",
-        "default": "10051"
-      }
-    ],
-    "restart_policy": "always"
-  }
-]
+{
+  "version":"2",
+  "templates":[
+    {
+      "type":1,
+      "title":"AdGuard Home",
+      "description":"Free and open source, powerful network-wide ads & trackers blocking DNS server",
+      "logo":"https://upload.wikimedia.org/wikipedia/commons/4/48/AdGuard_Logo.png",
+      "name":"adguard",
+      "platform":"linux",
+      "image":"adguard/adguardhome:latest",
+      "hostname":"adguard",
+      "network":"physical",
+      "ports":[
+        "53:53/tcp",
+        "53:53/udp",
+        "67:67/udp",
+        "68:68/tcp",
+        "68:68/udp",
+        "80:80/tcp",
+        "443:443/tcp",
+        "853:853/tcp",
+        "3000:3000/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/opt/adguardhome/work",
+          "bind":"/mnt/docker-data/adguard/data"
+        },
+        {
+          "container":"/opt/adguardhome/conf",
+          "bind":"/mnt/docker-data/adguard/conf"
+        }
+      ],
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"Bitwarden",
+      "description":"Unofficial Bitwarden compatible server written in Rust - Free and open source password management solution for individuals, teams, and business organizations",
+      "logo":"https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
+      "name":"bitwarden",
+      "platform":"linux",
+      "image":"bitwardenrs/server:latest",
+      "hostname":"bitwarden",
+      "network":"bridge",
+      "ports":[
+        "8800:80/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/data",
+          "bind":"/mnt/docker-data/bitwarden"
+        }
+      ],
+      "restart_policy":"unless-stopped"
+    },
+    {
+      "type":1,
+      "title":"Home Assistant metrics",
+      "description":"Used to show data from a Home Assistant installation",
+      "logo":"https://gitlab.com/uploads/-/system/project/avatar/928825/grafana_icon.png",
+      "name":"hametrics",
+      "platform":"linux",
+      "image":"philhawthorne/docker-influxdb-grafana:latest",
+      "hostname":"hametrics",
+      "network":"bridge",
+      "ports":[
+        "3003:3003/tcp",
+        "3004:8083/tcp",
+        "8086:8086/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/var/lib/influxdb",
+          "bind":"/mnt/docker-data/hametrics/influxdb"
+        },
+        {
+          "container":"/var/lib/grafana",
+          "bind":"/mnt/docker-data/hametrics/grafana"
+        }
+      ],
+      "env":[
+        {
+          "name":"GF_USERS_ALLOW_SIGN_UP",
+          "label":"Allow sign up",
+          "description":"Allow users to sign up. Defaults to false. The admin user can still create users from the Grafana Admin Pages.",
+          "default":"false"
+        },
+        {
+          "name":"GF_ANALYTICS_REPORTING_ENABLED",
+          "default":"false",
+          "preset":true
+        }
+      ],
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"Ivideon Server",
+      "description":"A cloud-based video surveillance solution for business and the home",
+      "logo":"https://images-na.ssl-images-amazon.com/images/I/41220Z0NcRL._SY355_.png",
+      "name":"ivideon-server",
+      "note":"Choose bridge network to access Ivideon Cloud and to be container accessible from the outside for the Ivideon Client local view.",
+      "platform":"linux",
+      "image":"sisaenkov/ivideon-server:latest",
+      "hostname":"ivideon",
+      "network":"bridge",
+      "ports":[
+        "8080:8080/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/config",
+          "bind":"/mnt/docker-data/ivideon"
+        },
+        {
+          "container":"/archive",
+          "bind":"/mnt/ivideon_archive"
+        }
+      ],
+      "env":[
+        {
+          "name":"EMAIL",
+          "label":"Email",
+          "description":"Your ivideon.com account"
+        },
+        {
+          "name":"SERVER_NAME",
+          "label":"Server name",
+          "description":"Ivideon server name without spaces (displayed in Ivideon Client and Web UI)",
+          "default":"Home"
+        }
+      ],
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"Plex Media Server",
+      "description":"Client-server media player system and software suite comprising two main components",
+      "logo":"https://www.techspot.com/images2/downloads/topdownload/2015/08/plex.png",
+      "name":"plex",
+      "platform":"linux",
+      "image":"linuxserver/plex:amd64-latest",
+      "hostname":"plex",
+      "network":"bridge",
+      "ports":[
+        "32400:32400/tcp",
+        "32400:32400/udp",
+        "32469:32469/tcp",
+        "32469:32469/udp",
+        "5353:5353/udp",
+        "1900:1900/udp"
+      ],
+      "volumes":[
+        {
+          "container":"/config",
+          "bind":"/mnt/docker-data/plex/config"
+        },
+        {
+          "container":"/data",
+          "bind":"/mnt/Media",
+          "readonly":true
+        }
+      ],
+      "env":[
+        {
+          "name":"PUID",
+          "label":"UID",
+          "description":"Specifies the UID for the container internal plex user (used for process and file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"PGID",
+          "label":"GID",
+          "description":"Specifies the GID for the container internal plex group (used for file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"VERSION",
+          "label":"Version",
+          "description":"Let Docker handle the Plex Version",
+          "default":"docker"
+        }
+      ],
+      "restart_policy":"unless-stopped"
+    },
+    {
+      "type":1,
+      "title":"Shinobi",
+      "description":"The opensource CCTV solution",
+      "logo":"https://shinobi.video/libs/assets/icon/apple-touch-icon-152x152.png",
+      "name":"shinobi",
+      "platform":"linux",
+      "image":"shinobicctv/shinobi:latest",
+      "hostname":"shinobi",
+      "network":"bridge",
+      "ports":[
+        "8013:8080/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/dev/shm/shinobiStreams",
+          "bind":"/dev/shm/streams"
+        },
+        {
+          "container":"/config",
+          "bind":"/mnt/docker-data/shinobi/config"
+        },
+        {
+          "container":"/customAutoLoad",
+          "bind":"/mnt/docker-data/shinobi/customAutoLoad"
+        },
+        {
+          "container":"/var/lib/mysql",
+          "bind":"/mnt/docker-data/shinobi/database"
+        },
+        {
+          "container":"/opt/shinobi/videos",
+          "bind":"/mnt/ivideon_archive"
+        }
+      ],
+      "env":[
+        {
+          "name":"APP_BRANCH",
+          "label":"APP_BRANCH",
+          "description":"Set Branch to Development Branch (Latest code)",
+          "default":"dev"
+        }
+      ],
+      "restart_policy":"unless-stopped"
+    },
+    {
+      "type":1,
+      "title":"Transmission",
+      "description":"Cross-platform BitTorrent client",
+      "logo":"https://cusdeb.com/static/raspberry_pi_images/images/transmission-square-logo.png",
+      "name":"transmission",
+      "platform":"linux",
+      "image":"sisaenkov/transmission:latest",
+      "hostname":"torrent",
+      "network":"bridge",
+      "ports":[
+        "9091:9091/tcp",
+        "10894:10894/tcp",
+        "10894:10894/udp"
+      ],
+      "volumes":[
+        {
+          "container":"/config",
+          "bind":"/mnt/docker-data/transmission"
+        },
+        {
+          "container":"/downloads",
+          "bind":"/mnt/Torrents"
+        }
+      ],
+      "env":[
+        {
+          "name":"PUID",
+          "label":"UID",
+          "description":"Specifies the UID for the container internal transmission user (used for process and file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"PGID",
+          "label":"GID",
+          "description":"Specifies the GID for the container internal transmission group (used for file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"USER",
+          "label":"USER",
+          "description":"[Optional] Specifies same as rpc-username (used for script-torrent-done)",
+          "default":""
+        },
+        {
+          "name":"PASS",
+          "label":"PASS",
+          "description":"[Optional] Specifies same as rpc-password (used for script-torrent-done)",
+          "default":""
+        },
+        {
+          "name":"TZ",
+          "label":"Timezone",
+          "description":"e.g. Europe/Moscow",
+          "default":"Europe/Moscow"
+        }
+      ],
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"UniFi Controller",
+      "description":"Ubiquiti Networks UniFi Controller",
+      "logo":"https://dl.ubnt.com/press/Company_Logos/U_Logo/WEB/U_Logo_RGB.jpg",
+      "name":"unifi",
+      "note":"Choose right network (macvlan preferred). This container must be exposed to the outside. Bridge network does not work properly.",
+      "platform":"linux",
+      "image":"goofball222/unifi:latest",
+      "hostname":"unifi",
+      "network":"physical",
+      "ports":[
+        "3478:3478/udp",
+        "6789:6789/tcp",
+        "8080:8080/tcp",
+        "8443:8443/tcp",
+        "8843:8843/tcp",
+        "8880:8880/tcp",
+        "10001:10001/udp"
+      ],
+      "volumes":[
+        {
+          "container":"/usr/lib/unifi/data",
+          "bind":"/mnt/docker-data/unifi"
+        },
+        {
+          "container":"/usr/lib/unifi/cert",
+          "bind":"/mnt/docker-data/unifi/cert"
+        }
+      ],
+      "env":[
+        {
+          "name":"PUID",
+          "label":"UID",
+          "description":"Specifies the UID for the container internal unifi user (used for process and file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"PGID",
+          "label":"GID",
+          "description":"Specifies the GID for the container internal unifi group (used for file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"TZ",
+          "label":"Timezone",
+          "description":"e.g. Europe/Moscow",
+          "default":"Europe/Moscow"
+        },
+        {
+          "name":"RUN_CHOWN",
+          "label":"RUN_CHOWN",
+          "description":"Set to false to disable the container automatic chown at startup. Speeds up startup process on overlay2 Docker hosts. It's critical that you insure directory/data permissions on all mapped volumes are correct before disabling this or UniFi and/or Mongo will not start.",
+          "default":"false"
+        }
+      ],
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"Zabbix Agent",
+      "description":"version 3.4.15",
+      "logo":"https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
+      "name":"zabbix-agent",
+      "note":"Choose right network (bridge preferred). This container port must be exposed for server to connect to it.",
+      "platform":"linux",
+      "image":"zabbix/zabbix-agent:alpine-3.4.15",
+      "hostname":"zagent01",
+      "network":"bridge",
+      "ports":[
+        "10050:10050/tcp"
+      ],
+      "env":[
+        {
+          "name":"ZBX_HOSTNAME",
+          "label":"Zabbix Agent hostname",
+          "description":"ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
+          "default":"docker"
+        },
+        {
+          "name":"ZBX_SERVER_HOST",
+          "label":"Zabbix Server host",
+          "description":"ZBX_SERVER_HOST - This variable is IP or DNS name of Zabbix server or Zabbix proxy."
+        },
+        {
+          "name":"ZBX_ENABLEREMOTECOMMANDS",
+          "label":"Enable remote commands",
+          "default":"1"
+        },
+        {
+          "name":"ZBX_PASSIVESERVERS",
+          "label":"Zabbix passive servers",
+          "description":"The variable is comma separated list of allowed Zabbix server or proxy hosts for connections to Zabbix agent container. By default - docker bridge interface address.",
+          "default":"172.17.0.1"
+        }
+      ],
+      "privileged":true,
+      "restart_policy":"always"
+    },
+    {
+      "type":1,
+      "title":"Zabbix Proxy",
+      "description":"version 3.4.15 with sqlite3 database",
+      "logo":"https://rtfm.co.ua/wp-content/uploads/2014/09/zabbix_logo.png",
+      "name":"zabbix-proxy",
+      "note":"Choose right network (bridge preferred). This container port must be exposed for agents to connect to it.",
+      "platform":"linux",
+      "image":"zabbix/zabbix-proxy-sqlite3:alpine-3.4.15",
+      "hostname":"zproxy01",
+      "network":"bridge",
+      "ports":[
+        "10051:10051/tcp"
+      ],
+      "env":[
+        {
+          "name":"ZBX_PROXYMODE",
+          "label":"Zabbix Proxy mode",
+          "description":"ZBX_PROXYMODE - The variable allows to switch Zabbix proxy mode. Bu default, value is 0 - active proxy. Allowed values are 0 - active proxy and 1 - passive proxy.",
+          "default":"0"
+        },
+        {
+          "name":"ZBX_HOSTNAME",
+          "label":"Zabbix Proxy hostname",
+          "description":"ZBX_HOSTNAME - This variable is unique, case sensitive hostname.",
+          "default":"zproxy01"
+        },
+        {
+          "name":"ZBX_SERVER_HOST",
+          "label":"Zabbix Server host",
+          "description":"ZBX_SERVER_HOST - This variable is IP or DNS name of Zabbix server or Zabbix proxy."
+        },
+        {
+          "name":"ZBX_SERVER_PORT",
+          "label":"Zabbix Server port",
+          "description":"ZBX_SERVER_PORT - This variable is port Zabbix server listening on.",
+          "default":"10051"
+        }
+      ],
+      "restart_policy":"always"
+    }
+  ]
+}
