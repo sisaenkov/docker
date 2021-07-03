@@ -234,7 +234,7 @@
       "type":1,
       "title":"Transmission",
       "description":"Cross-platform BitTorrent client",
-      "logo":"https://cusdeb.com/static/raspberry_pi_images/images/transmission-square-logo.png",
+      "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Transmission_Icon.svg/1200px-Transmission_Icon.svg.png",
       "name":"transmission",
       "platform":"linux",
       "image":"sisaenkov/transmission:latest",
