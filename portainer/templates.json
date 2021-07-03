@@ -295,39 +295,30 @@
       "description":"Ubiquiti Networks UniFi Controller",
       "logo":"https://dl.ubnt.com/press/Company_Logos/U_Logo/WEB/U_Logo_RGB.jpg",
       "name":"unifi",
-      "note":"Choose right network (macvlan preferred). This container must be exposed to the outside. Bridge network does not work properly.",
+      "note":"Choose right network (macvlan preferred). This container must be exposed to the outside. Bridge network does not work properly. Description: https://hub.docker.com/r/jacobalberty/unifi",
       "platform":"linux",
-      "image":"goofball222/unifi:latest",
+      "image":"jacobalberty/unifi:latest",
       "hostname":"unifi",
       "network":"physical",
-      "ports":[
-        "3478:3478/udp",
-        "6789:6789/tcp",
-        "8080:8080/tcp",
-        "8443:8443/tcp",
-        "8843:8843/tcp",
-        "8880:8880/tcp",
-        "10001:10001/udp"
-      ],
       "volumes":[
         {
-          "container":"/usr/lib/unifi/data",
+          "container":"/unifi",
           "bind":"/mnt/docker-data/unifi"
         },
         {
-          "container":"/usr/lib/unifi/cert",
+          "container":"/unifi/cert",
           "bind":"/mnt/docker-data/unifi/cert"
         }
       ],
       "env":[
         {
-          "name":"PUID",
+          "name":"UNIFI_UID",
           "label":"UID",
           "description":"Specifies the UID for the container internal unifi user (used for process and file ownership)",
           "default":"1020"
         },
         {
-          "name":"PGID",
+          "name":"UNIFI_GID",
           "label":"GID",
           "description":"Specifies the GID for the container internal unifi group (used for file ownership)",
           "default":"1020"
@@ -339,13 +330,25 @@
           "default":"Europe/Moscow"
         },
         {
-          "name":"RUN_CHOWN",
-          "label":"RUN_CHOWN",
-          "description":"Set to false to disable the container automatic chown at startup. Speeds up startup process on overlay2 Docker hosts. It's critical that you insure directory/data permissions on all mapped volumes are correct before disabling this or UniFi and/or Mongo will not start.",
-          "default":"false"
+          "name":"CERTNAME",
+          "label":"Certificate name",
+          "description":"Set certificate file name.",
+          "default":"chain.pem"
+        },
+        {
+          "name":"CERT_PRIVATE_NAME",
+          "label":"Private key name",
+          "description":"Set private key file name.",
+          "default":"privkey.pem"
+        },
+        {
+          "name":"CERT_IS_CHAIN",
+          "label":"Certificate is a chain",
+          "description":"Use fullchain instead certificate only.",
+          "default":"true"
         }
       ],
-      "restart_policy":"always"
+      "restart_policy":"unless-stopped"
     },
     {
       "type":1,
