@@ -41,7 +41,7 @@
       "logo":"https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/fcec8b2d-e0a4-48dc-91fe-1a9ff0840ae8/1319010454/bitwarden-screenshot.png",
       "name":"bitwarden",
       "platform":"linux",
-      "image":"bitwardenrs/server:latest",
+      "image":"vaultwarden/server:alpine",
       "hostname":"bitwarden",
       "network":"bridge",
       "ports":[
