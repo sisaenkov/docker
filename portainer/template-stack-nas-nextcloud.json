@@ -1,0 +1,77 @@
+version: '2'
+
+services:
+  nextcloud:
+    image: linuxserver/nextcloud:arm64v8-latest
+    container_name: nextcloud
+    links:
+      - mariadb
+      - redis
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - /hdd/docker/nextcloud:/config
+      - /hdd/data:/data
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  mariadb:
+    image: linuxserver/mariadb:arm64v8-latest
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=rootP@ssw0rd
+      - TZ=Europe/Moscow
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=P@ssw0rd
+    volumes:
+      - /hdd/docker/mariadb:/config
+    restart: unless-stopped
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: unless-stopped
+    volumes:
+      - /hdd/docker/redis:/data
+
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    cap_add:
+      - NET_ADMIN
+    links:
+      - nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - URL=yourdomain.duckdns.org
+      - SUBDOMAINS=wildcard
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    volumes:
+      - /hdd/docker/letsencrypt:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+  bitwarden:
+    image: vaultwarden/server:latest
+    container_name: bitwarden
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bitwarden.rule=Host(`bitwarden.yourdomain.duckdns.org`)
+      - traefik.http.routers.bitwarden.entrypoints=web
+      - traefik.http.services.bitwarden.loadbalancer.server.port=80
+    environment:
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - /hdd/docker/bitwarden:/data/
+    restart: unless-stopped
