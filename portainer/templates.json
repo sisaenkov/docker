@@ -151,7 +151,7 @@
       "volumes":[
         {
           "container":"/config",
-          "bind":"/mnt/docker-data/jellyfin/config"
+          "bind":"/mnt/docker-data/jellyfin"
         },
         {
           "container":"/data",
@@ -202,7 +202,7 @@
       "volumes":[
         {
           "container":"/config",
-          "bind":"/mnt/docker-data/plex/config"
+          "bind":"/mnt/docker-data/plex"
         },
         {
           "container":"/data",
