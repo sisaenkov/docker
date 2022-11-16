@@ -134,6 +134,53 @@
       ],
       "restart_policy":"always"
     },
+	{
+      "type":1,
+      "title":"Jellyfin",
+      "description":"Volunteer-built media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.",
+      "logo":"https://jellyfin.org/images/logo.svg",
+      "name":"jellyfin",
+	  "note":"Do not forget to bind devices /dev/dri/renderD128 and /dev/dri/card0 on Runtime & Resources tab",
+      "platform":"linux",
+      "image":"lscr.io/linuxserver/jellyfin:latest",
+      "hostname":"jellyfin",
+      "network":"bridge",
+      "ports":[
+        "8096:8096/tcp"
+      ],
+      "volumes":[
+        {
+          "container":"/config",
+          "bind":"/mnt/docker-data/jellyfin/config"
+        },
+        {
+          "container":"/data",
+          "bind":"/mnt/Media",
+          "readonly":true
+        }
+      ],
+      "env":[
+        {
+          "name":"PUID",
+          "label":"UID",
+          "description":"Specifies the UID for the container internal jellyfin user (used for process and file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"PGID",
+          "label":"GID",
+          "description":"Specifies the GID for the container internal jellyfin group (used for file ownership)",
+          "default":"1020"
+        },
+        {
+          "name":"TZ",
+          "label":"Timezone",
+          "description":"e.g. Europe/Moscow",
+          "default":"Europe/Moscow"
+        }
+      ],
+      "restart_policy":"unless-stopped"
+    },
     {
       "type":1,
       "title":"Plex Media Server",
