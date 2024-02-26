@@ -1,8 +1,12 @@
-version: "2"
+version: "3"
 services:
   unifi-db:
-    image: docker.io/mongo:7.0.5
+    image: docker.io/mongo:4.4.18
     container_name: unifi-db
+    environment:
+      - PUID=1020
+      - PGID=1020
+      - TZ=Europe/Moscow
     volumes:
       - /mnt/docker-data/unifi/db:/data/db
     restart: unless-stopped
@@ -18,10 +22,8 @@ services:
       - MONGO_HOST=unifi-db
       - MONGO_PORT=27017
       - MONGO_DBNAME=unifi
-      - MEM_LIMIT=1024 #optional
+      - MEM_LIMIT=2048 #optional
       - MEM_STARTUP=1024 #optional
-      - MONGO_TLS= #optional
-      - MONGO_AUTHSOURCE= #optional
     volumes:
       - /mnt/docker-data/unifi:/config
     ports:
@@ -34,4 +36,11 @@ services:
       - 8880:8880 #optional
       - 6789:6789 #optional
       - 5514:5514/udp #optional
+#    networks:
+#      - physical
+#    hostname: unifi
+#    mac_address: 02:42:ac:10:01:0c
     restart: unless-stopped
+#networks:
+#  physical:
+#    external: true
